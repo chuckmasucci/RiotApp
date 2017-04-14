@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "RiotApp\\": "app/src/"
+        }
+    },
+    "require": {
+        "slim/slim": "^3.0",
+        "monolog/monolog": "^1.22",
+        "slim/php-view": "^2.2"
+    }
+}
