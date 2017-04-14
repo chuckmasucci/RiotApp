@@ -42,11 +42,7 @@ class RiotModel
         $resp = json_decode($resp)->data;
         curl_close($curl);
 
-        echo "<pre>";
-        var_dump($resp);
-        echo "</pre>";
-
-        // return $resp;
+        return $resp;
 
     }
 
