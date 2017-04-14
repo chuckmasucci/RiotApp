@@ -29,7 +29,3 @@ $container['Models\RiotModel'] = function ($c) {
 $container['Controllers\RiotAPIController'] = function ($c) {
     return new Controllers\RiotAPIController($c['view'], $c['router'], $c['Models\RiotModel']);
 };
-
-// echo "<pre>";
-// var_dump($container['db']);
-// echo "</pre>";
