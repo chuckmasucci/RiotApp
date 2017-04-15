@@ -12,7 +12,7 @@ $config = [
     'db' => [
         'host' => 'localhost',
         'user' => 'chuck',
-        'pass' => '',
+        'pass' => '3Pz832',
         'dbname' => 'riot'
     ]
 ];
