@@ -4,8 +4,6 @@ namespace RiotApp\Controllers;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-// use \RiotApp\Models\RiotModel;
-
 final class RiotAPIController
 {
     private $view;
@@ -21,7 +19,6 @@ final class RiotAPIController
 
     public function view($request, $response)
     {
-        // $this->model->getMatchList();
         return $this->view->render($response, 'home.phtml', [
 
         ]);

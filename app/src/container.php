@@ -26,6 +26,10 @@ $container['Models\RiotModel'] = function ($c) {
     return new Models\RiotModel($c['db'], $c['logger']);
 };
 
+$container['Models\SummonerSpellsModel'] = function ($c) {
+    return new Models\SummonerSpellsModel($c['db'], $c['logger']);
+};
+
 $container['Controllers\RiotAPIController'] = function ($c) {
     return new Controllers\RiotAPIController($c['view'], $c['router'], $c['Models\RiotModel']);
 };
