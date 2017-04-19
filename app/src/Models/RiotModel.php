@@ -45,6 +45,11 @@ class RiotModel
         return $this->db->query($query)->fetchAll();
     }
 
+    // Delete all rows from table
+    protected function truncate($table) {
+        return $this->db->exec("TRUNCATE TABLE $table");
+    }
+
     // Database insert method
     protected function insertDB($table = NULL, $columns = array(), $data = NULL)
     {

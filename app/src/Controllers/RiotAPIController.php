@@ -21,8 +21,13 @@ final class RiotAPIController
     {
         if(isset($params['req'])) {
             $this->models[$params['req']]->getApiData();
+            return $this->view->render($response, 'api.phtml', [
+                'model' => $params['req']
+            ]);
+        } else {
+            return $this->view->render($response, 'api.phtml');
         }
 
-        return $this->view->render($response, 'api.phtml', []);
+
     }
 }

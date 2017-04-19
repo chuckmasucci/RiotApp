@@ -10,6 +10,9 @@ class ChampionsModel extends RiotModel
 
     public function getApiData()
     {
+        // Clear out the database
+        $this->deleteAllRows();
+
         // Query Riot API for Champions data
         $champion_data = $this->makeApiRequest(
             $base_url = "https://global.api.riotgames.com/api/lol/static-data/NA/",
@@ -27,5 +30,10 @@ class ChampionsModel extends RiotModel
 
         // Insert data into `champions` table
         $this->insertDB($table = 'champions', $columns = ['championId' => 'id', 'name' => 'name', 'image' => 'image'], $champion_data->data);
+    }
+
+    private function deleteAllRows()
+    {
+        $this->truncate('champions');
     }
 }
