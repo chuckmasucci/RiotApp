@@ -10,6 +10,9 @@ class MatchListModel extends RiotModel
 
     public function getApiData()
     {
+        // Clear out the database
+        $this->truncate('games');
+
         // Query Riot API for Match List data
         $match_list_data = $this->makeApiRequest(
             $base_url = "https://na.api.riotgames.com/api/lol/NA/",

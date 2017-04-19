@@ -36,6 +36,16 @@ $container['Models\ChampionsModel'] = function ($c) {
     return new Models\ChampionsModel($c['db'], $c['logger']);
 };
 
+// Item model
+$container['Models\ItemsModel'] = function ($c) {
+    return new Models\ItemsModel($c['db'], $c['logger']);
+};
+
+// Summoner spells model
+$container['Models\SummonerSpellsModel'] = function ($c) {
+    return new Models\SummonerSpellsModel($c['db'], $c['logger']);
+};
+
 // Match lists
 $container['Models\MatchListModel'] = function ($c) {
     return new Models\MatchListModel($c['db'], $c['logger']);
@@ -59,7 +69,9 @@ $container['Controllers\RiotAPIController'] = function ($c) {
     return new Controllers\RiotAPIController($c['view'], $c['router'], [
         'match_list' => $c['Models\MatchListModel'],
         'matches' => $c['Models\MatchesModel'],
-        'champions' => $c['Models\ChampionsModel']
+        'champions' => $c['Models\ChampionsModel'],
+        'items' => $c['Models\ItemsModel'],
+        'summoner_spells' => $c['Models\SummonerSpellsModel']
     ]);
 };
 

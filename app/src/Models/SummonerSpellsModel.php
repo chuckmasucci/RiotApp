@@ -5,11 +5,14 @@ class SummonerSpellsModel extends RiotModel
 {
     public function __construct($db, $logger)
     {
-        parent::__construct();
+        parent::__construct($db, $logger);
     }
 
     public function getApiData()
     {
+        // Clear out the database
+        $this->truncate('summoner_spell');
+
         // Query Riot API for Summoner Spell data
         $spell_data = $this->makeApiRequest(
             $base_url = "https://global.api.riotgames.com/api/lol/static-data/NA/",
