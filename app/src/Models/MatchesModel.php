@@ -22,6 +22,13 @@ class MatchesModel extends RiotModel
         $data = array();
 
         // Get participant id to use as index for participants object ($match_data->participants)
+        // if(isset($match_data->participantIdentities)) {
+        //     var_dump($match_data->participantIdentities);
+        // }
+        // else {
+        //     var_dump("Missing for $match_id");
+        //     var_dump($match_data);
+        // }
         $participant_id = $this->getParticipantId($match_data->participantIdentities, $this->summoner_id);
         $participant_data = $match_data->participants[$participant_id-1];
 
@@ -150,5 +157,10 @@ class MatchesModel extends RiotModel
             from single_match sm INNER JOIN champions c WHERE sm.championId = c.championId AND sm.id = $id GROUP BY sm.id, c.name, c.image ORDER BY sm.matchId DESC";
 
         return $this->queryDB($query);
+    }
+
+    public function truncate($table)
+    {
+        parent::truncate($table);
     }
 }
