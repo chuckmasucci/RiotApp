@@ -8,7 +8,7 @@ There is still a lot more which can be done with this site, but I wanted to make
 #### What it does
 The home page (SITE_ROOT/) shows a list of the last 10 games played, and each list item is clickable to a more detailed page of the game's statistics.
 
-The API (SITE_ROOT/api) allows for calls to be to the API model to pull in data from the [Riot API](https://developer.riotgames.com/) and store the data within the database.
+The API (SITE_ROOT/api) allows for calls to be made to the various API models to pull in data from the [Riot API](https://developer.riotgames.com/) and store the data within the database.
 
 #### Structure
 ```
