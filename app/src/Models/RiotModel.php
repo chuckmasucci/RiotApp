@@ -4,25 +4,29 @@ namespace RiotApp\Models;
 
 class RiotModel
 {
-    private $logger;
-    private $db;
-    private $api_key;
-    private $summoner_id;
+    protected $logger;
+    protected $db;
+    protected $api_key;
+    protected $summoner_id;
 
-    public function __construct($db, $logger)
+    public function __construct($db)
     {
-        $this->logger = $logger;
+        // Set the class var to the db (database instance)
         $this->db = $db;
 
+        // Riot API Key
         $this->api_key = "RGAPI-563dfbac-aa37-4bb9-a3a1-d54c8b9ea1c2";
+
+        // Summoner (user) id
         $this->summoner_id = "35301382";
     }
 
-    private function makeApiRequest($base_url = NULL, $version = NULL, $endpoint = NULL, $request_type = NULL, $params = NULL)
+    // API request helper method
+    protected function makeApiRequest($base_url = NULL, $version = NULL, $endpoint = NULL, $request_type = NULL, $params = NULL)
     {
         $curl = curl_init();
         $request_url = $base_url . $version . $endpoint . $request_type . "?" . $params . "&api_key=" . $this->api_key;
-        
+
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $request_url
@@ -35,8 +39,16 @@ class RiotModel
         return $resp;
     }
 
-    private function insertDB($table = null, $columns = array(), $data = null)
+    // Simple database query helper method
+    protected function queryDB($query = NULL)
     {
+        return $this->db->query($query)->fetchAll();
+    }
+
+    // Database insert method
+    protected function insertDB($table = NULL, $columns = array(), $data = NULL)
+    {
+        // var_dump($data);
         $query = "INSERT INTO $table ";
         $query .= "(";
         foreach ($columns as $key => $value) {
@@ -65,5 +77,6 @@ class RiotModel
             }
             $stmt->execute();
         }
+        // var_dump($query);
     }
 }

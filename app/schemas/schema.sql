@@ -21,36 +21,39 @@ CREATE TABLE IF NOT EXISTS `champions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `championId` smallint(6) DEFAULT NULL,
   `name` varchar(25) DEFAULT NULL,
+  `image` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2301 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table riot.games
 CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `matchId` bigint(20) NOT NULL,
+  `queue` varchar(25) NOT NULL,
   `timestamp` timestamp NULL DEFAULT NULL,
   `lane` varchar(15) NOT NULL,
   `role` varchar(15) NOT NULL,
   `champion` smallint(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1153 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table riot.items
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `itemId` smallint(6) DEFAULT NULL,
-  `name` varchar(25) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `description` text,
   `plaintext` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2279 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
--- Dumping structure for table riot.match
-CREATE TABLE IF NOT EXISTS `match` (
+-- Dumping structure for table riot.single_match
+CREATE TABLE IF NOT EXISTS `single_match` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `matchId` bigint(20) DEFAULT NULL,
   `mapId` tinyint(4) DEFAULT NULL,
   `championId` smallint(6) DEFAULT NULL,
   `timestamp` datetime DEFAULT NULL,
@@ -72,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `match` (
   `item5` smallint(6) DEFAULT NULL,
   `item6` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table riot.summoner_spell
@@ -82,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `summoner_spell` (
   `name` varchar(50) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

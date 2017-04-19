@@ -1,1 +1,54 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>League of Legends Recent Games</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="container main">
+        <div class="row">
+            <div class="twelve columns">
+                <h4>Recent Games</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <?php foreach($matches as $match): ?>
+                    <?php
+                        $did_win = $match['didWin'];
+                    ?>
+                    <a href="/match/<?=$match['id']?>">
+                        <div class="row-game <?=($did_win) ? 'row-game--victory' : 'row-game--defeat'?>">
+                            <h5><?=($did_win == 1) ? "Victory" : "Defeat"?></h5>
+                            <div>
+                                <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<?=$match['image']?>" />
+                                <div class="row-game__champion">
+                                    <?=$match['champion_name']?>
+                                </div>
+                            </div>
+                            <div class="row-game__kda">
+                                <?=$match['kills']?> / <?=$match['deaths']?> / <?=$match['assists']?>
+                            </div>
+                            <div class="row-game__timestamp">
+                                <?=date("F j, Y, g:i a", strtotime($match['timestamp']));?>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -5,7 +5,8 @@ require 'vendor/autoload.php';
 require 'app/src/config/config.php';
 session_start();
 
-$app = new \Slim\App(["settings" => $config]);
+// Initiate framework
+$app = new \Slim\App($config);
 
 // Load containers
 require 'app/src/container.php';

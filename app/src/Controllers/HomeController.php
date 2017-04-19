@@ -4,7 +4,7 @@ namespace RiotApp\Controllers;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-final class RiotAPIController
+final class HomeController
 {
     private $view;
     private $models;
@@ -17,12 +17,14 @@ final class RiotAPIController
         $this->models = $models;
     }
 
-    public function view($request, $response, $params)
+    public function view($request, $response)
     {
-        if(isset($params['req'])) {
-            $this->models[$params['req']]->getApiData();
-        }
+            // Get all matches for home page
+            $matches = $this->models['matches']->getAllMatches();
 
-        return $this->view->render($response, 'api.phtml', []);
+            // Render to home HTML template
+            return $this->view->render($response, 'home.phtml', [
+                'matches' => $matches
+            ]);
     }
 }

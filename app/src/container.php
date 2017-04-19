@@ -22,14 +22,51 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
+//
+// Autoload Models & Controllers
+//
+
+// Root data model
 $container['Models\RiotModel'] = function ($c) {
     return new Models\RiotModel($c['db'], $c['logger']);
 };
 
-$container['Models\SummonerSpellsModel'] = function ($c) {
-    return new Models\SummonerSpellsModel($c['db'], $c['logger']);
+// Champion model
+$container['Models\ChampionsModel'] = function ($c) {
+    return new Models\ChampionsModel($c['db'], $c['logger']);
 };
 
+// Match lists
+$container['Models\MatchListModel'] = function ($c) {
+    return new Models\MatchListModel($c['db'], $c['logger']);
+};
+
+// Individual matches
+$container['Models\MatchesModel'] = function ($c) {
+    return new Models\MatchesModel($c['db'], $c['logger']);
+};
+
+// Home controller
+$container['Controllers\HomeController'] = function ($c) {
+    return new Controllers\HomeController($c['view'], $c['router'], [
+        'match_list' => $c['Models\MatchListModel'],
+        'matches' => $c['Models\MatchesModel']
+    ]);
+};
+
+// API controller
 $container['Controllers\RiotAPIController'] = function ($c) {
-    return new Controllers\RiotAPIController($c['view'], $c['router'], $c['Models\RiotModel']);
+    return new Controllers\RiotAPIController($c['view'], $c['router'], [
+        'match_list' => $c['Models\MatchListModel'],
+        'matches' => $c['Models\MatchesModel'],
+        'champions' => $c['Models\ChampionsModel']
+    ]);
+};
+
+// Match page
+$container['Controllers\MatchController'] = function ($c) {
+    return new Controllers\MatchController($c['view'], $c['router'], [
+        'match_list' => $c['Models\MatchListModel'],
+        'matches' => $c['Models\MatchesModel']
+    ]);
 };

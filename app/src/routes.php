@@ -4,9 +4,15 @@ namespace RiotApp;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->get('/', function (Request $request, Response $response) {
-    $response = $this->view->render($response, "home.phtml");
-    return $response;
-});
+//
+// Site routes
+//
 
-$app->get('/api', 'Controllers\RiotAPIController:view')->setName('home');
+// Home page
+$app->get('/', 'Controllers\HomeController:view')->setName('home');
+
+// Individual match page
+$app->get('/match/{id}', 'Controllers\MatchController:view')->setName('match');
+
+// API
+$app->get('/api/[{req}]', 'Controllers\RiotAPIController:view')->setName('api');

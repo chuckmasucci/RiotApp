@@ -8,15 +8,18 @@ class SummonerSpellsModel extends RiotModel
         parent::__construct();
     }
 
-    public function getData()
+    public function getApiData()
     {
+        // Query Riot API for Summoner Spell data
         $spell_data = $this->makeApiRequest(
-            $base_url="https://global.api.riotgames.com/api/lol/static-data/NA/",
+            $base_url = "https://global.api.riotgames.com/api/lol/static-data/NA/",
             $version = "v1.2",
             $endpoint = "/summoner-spell",
             $request_type = NULL,
             $params = "spellData=all"
         );
+
+        // Insert data into `summoner_spell` table
         $this->insertDB($table = 'summoner_spell', $columns = ['spellId' => 'id', 'name' => 'name', 'description' => 'description'], $spell_data->data);
     }
 }
